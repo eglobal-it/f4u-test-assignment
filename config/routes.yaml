@@ -1,0 +1,3 @@
+index:
+    path: /
+    controller: F4u\Shipping\Application\Delivery\Controller\DefaultController::index
