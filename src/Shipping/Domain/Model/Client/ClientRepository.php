@@ -11,8 +11,6 @@ namespace F4u\Shipping\Domain\Model\Client;
 
 interface ClientRepository
 {
-    public function nextIdentity(): ClientId;
-
     public function save(Client $client);
 
     public function byId(ClientId $clientId);

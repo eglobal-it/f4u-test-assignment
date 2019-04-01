@@ -11,5 +11,9 @@
     <field name="firstname" type="string" length="255" />
 
     <field name="lastname" type="string" length="255" />
+
+    <one-to-many field="shippingAddresses"
+                 target-entity="F4u\Shipping\Domain\Model\ShippingAddress\ShippingAddress"
+                 mapped-by="client" />
 </entity>
 </doctrine-mapping>
