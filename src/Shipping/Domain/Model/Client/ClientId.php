@@ -18,17 +18,17 @@ class ClientId
      */
     private $id;
 
-    public function __construct($id)
+    public function __construct($id = null)
     {
         $this->id = $id ?: Uuid::uuid4()->toString();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->id();
     }
 
-    public function id()
+    public function id(): string
     {
         return $this->id;
     }

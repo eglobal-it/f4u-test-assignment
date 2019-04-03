@@ -33,7 +33,7 @@ class EditShippingAddress
      * @param ShippingAddressId         $shippingAddressId
      * @param ShippingAddressParameters $shippingAddressParameters
      */
-    public function editShippingAddress(
+    public function run(
         ShippingAddressId $shippingAddressId,
         ShippingAddressParameters $shippingAddressParameters
     ) {

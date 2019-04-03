@@ -22,6 +22,13 @@ class DoctrineShippingAddressRepository extends EntityRepository implements Ship
         $entityManager->flush();
     }
 
+    public function remove(ShippingAddress $shippingAddress)
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->remove($shippingAddress);
+        $entityManager->flush();
+    }
+
     public function saveSet($shippingAddresses)
     {
         $entityManager = $this->getEntityManager();
@@ -31,7 +38,7 @@ class DoctrineShippingAddressRepository extends EntityRepository implements Ship
         $entityManager->flush();
     }
 
-    public function byId(ShippingAddressId $shippingAddressId)
+    public function byId(ShippingAddressId $shippingAddressId): ShippingAddress
     {
         return $this->find($shippingAddressId);
     }

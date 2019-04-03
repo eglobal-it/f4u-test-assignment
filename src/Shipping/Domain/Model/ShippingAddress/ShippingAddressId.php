@@ -18,7 +18,7 @@ class ShippingAddressId
      */
     private $id;
 
-    public function __construct($id)
+    public function __construct($id = null)
     {
         $this->id = $id ?: Uuid::uuid4()->toString();
     }

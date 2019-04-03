@@ -22,7 +22,7 @@ class DoctrineClientRepository extends EntityRepository implements ClientReposit
         $entityManager->flush();
     }
 
-    public function byId(ClientId $clientId)
+    public function byId(ClientId $clientId): Client
     {
         return $this->find($clientId);
     }

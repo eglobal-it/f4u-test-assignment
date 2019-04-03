@@ -23,24 +23,18 @@ class ShippingAddressParameters
      */
     private $makeDefault;
 
-    public function __construct(array $makeDefault, Address $address)
+    public function __construct(Address $address, bool $makeDefault)
     {
-        $this->makeDefault = (bool) $makeDefault;
         $this->address = $address;
+        $this->makeDefault = $makeDefault;
     }
 
-    /**
-     * @return Address
-     */
-    public function getAddress()
+    public function getAddress(): Address
     {
-        return $this->country;
+        return $this->address;
     }
 
-    /**
-     * @return bool
-     */
-    public function makeAsDefault()
+    public function makeAsDefault(): bool
     {
         return $this->makeDefault;
     }

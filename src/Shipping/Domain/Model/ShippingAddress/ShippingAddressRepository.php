@@ -18,6 +18,13 @@ interface ShippingAddressRepository
     public function save(ShippingAddress $shippingAddress);
 
     /**
+     * @param ShippingAddress $shippingAddress
+     *
+     * @return void
+     */
+    public function remove(ShippingAddress $shippingAddress);
+
+    /**
      * @param ShippingAddress[] $shippingAddresses
      *
      * @return void

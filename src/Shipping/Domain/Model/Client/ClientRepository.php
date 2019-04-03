@@ -13,5 +13,5 @@ interface ClientRepository
 {
     public function save(Client $client);
 
-    public function byId(ClientId $clientId);
+    public function byId(ClientId $clientId): Client;
 }

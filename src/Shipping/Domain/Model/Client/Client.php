@@ -37,7 +37,7 @@ class Client
      *
      * @return Collection|ShippingAddress[]
      */
-    public function getShippingAddresses()
+    public function getShippingAddresses(): Collection
     {
         return $this->shippingAddresses;
     }

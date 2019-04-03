@@ -9,6 +9,7 @@
 namespace F4u\Shipping\Domain\Model\ShippingAddress;
 
 use F4u\Shipping\Domain\Model\Client\Client;
+use F4u\Shipping\Domain\Model\Client\ClientId;
 use F4u\Shipping\Domain\Service\ShippingAddress\ShippingAddressParameters;
 
 class ShippingAddress
@@ -33,20 +34,40 @@ class ShippingAddress
      */
     private $isDefault;
 
+    private function __construct()
+    {
+    }
+
+    public static function factory(Client $client, ShippingAddressParameters $shippingAddressParameters): self
+    {
+        $shippingAddress = (new self())->setClient($client)->setAddress($shippingAddressParameters->getAddress());
+        $shippingAddress->shippingAddressId = new ShippingAddressId();
+        $shippingAddress->manageIsDefaultBy($shippingAddressParameters);
+        return $shippingAddress;
+    }
+
     /**
      * @param ShippingAddressParameters $shippingAddressParameters
      */
     public function edit(ShippingAddressParameters $shippingAddressParameters)
     {
-        if ($shippingAddressParameters->makeAsDefault()) {
-            $this->makeAsDefault();
-        }
+        $this->manageIsDefaultBy($shippingAddressParameters);
         $this->address = $shippingAddressParameters->getAddress();
     }
 
-    private function makeAsDefault()
+    /**
+     * @return bool
+     */
+    public function isDefault(): bool
     {
-        $this->isDefault = true;
+        return $this->isDefault;
+    }
+
+    private function manageIsDefaultBy(ShippingAddressParameters $shippingAddressParameters)
+    {
+        if ($shippingAddressParameters->makeAsDefault()) {
+            $this->isDefault = true;
+        }
     }
 
     public function makeNotDefault()
@@ -54,12 +75,22 @@ class ShippingAddress
         $this->isDefault = false;
     }
 
-    /**
-     *
-     * @return Client
-     */
-    public function getClient()
+    public function getClient(): Client
     {
         return $this->client;
+    }
+
+    private function setClient(Client $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    private function setAddress(Address $address): self
+    {
+        $this->address = $address;
+
+        return $this;
     }
 }

@@ -14,17 +14,17 @@ use F4u\Shipping\Domain\Model\Client\ClientId;
 
 class DoctrineClientId extends GuidType
 {
-    public function getName()
+    public function getName(): string
     {
         return 'ClientId';
     }
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
         return $value->id();
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): ClientId
     {
         return new ClientId($value);
     }
