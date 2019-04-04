@@ -6,7 +6,7 @@
  * Time: 17:55
  */
 
-namespace F4u\Shipping\Application\Delivery\Controller;
+namespace F4u\Shipping\Infrastructure\Delivery\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

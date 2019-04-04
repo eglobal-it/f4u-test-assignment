@@ -19,7 +19,7 @@ services:
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    F4u\Shipping\Application\Delivery\Controller\:
+    F4u\Shipping\Infrastructure\Delivery\Controller\:
         resource: '../src/Shipping/Infrastructure/Delivery/Controller'
         tags: ['controller.service_arguments']
 
