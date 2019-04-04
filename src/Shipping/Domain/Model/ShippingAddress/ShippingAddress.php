@@ -10,7 +10,6 @@ namespace F4u\Shipping\Domain\Model\ShippingAddress;
 
 use F4u\Shipping\Domain\Model\Client\Client;
 use F4u\Shipping\Domain\Model\Client\ClientId;
-use F4u\Shipping\Domain\Service\ShippingAddress\ShippingAddressParameters;
 
 class ShippingAddress
 {
@@ -38,35 +37,26 @@ class ShippingAddress
     {
     }
 
-    public static function factory(Client $client, ShippingAddressParameters $shippingAddressParameters): self
+    public static function factory(Client $client, Address $Address, bool $makeAsDefault): self
     {
-        $shippingAddress = (new self())->setClient($client)->setAddress($shippingAddressParameters->getAddress());
+        $shippingAddress = (new self())->setClient($client)->setAddress($Address);
         $shippingAddress->shippingAddressId = new ShippingAddressId();
-        $shippingAddress->manageIsDefaultBy($shippingAddressParameters);
+        $shippingAddress->isDefault = $makeAsDefault;
         return $shippingAddress;
     }
 
-    /**
-     * @param ShippingAddressParameters $shippingAddressParameters
-     */
-    public function edit(ShippingAddressParameters $shippingAddressParameters)
+    public function edit(Address $address, bool $makeAsDefault)
     {
-        $this->manageIsDefaultBy($shippingAddressParameters);
-        $this->address = $shippingAddressParameters->getAddress();
-    }
-
-    /**
-     * @return bool
-     */
-    public function isDefault(): bool
-    {
-        return $this->isDefault;
-    }
-
-    private function manageIsDefaultBy(ShippingAddressParameters $shippingAddressParameters)
-    {
-        if ($shippingAddressParameters->makeAsDefault()) {
+        if ($makeAsDefault) {
             $this->isDefault = true;
+        }
+        $this->address = $address;
+    }
+
+    public function checkThatRemovable()
+    {
+        if ($this->isDefault) {
+            throw new \RuntimeException('Cannot remove the default shipping address');
         }
     }
 

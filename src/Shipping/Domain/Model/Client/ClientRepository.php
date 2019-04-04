@@ -14,4 +14,6 @@ interface ClientRepository
     public function save(Client $client);
 
     public function byId(ClientId $clientId): Client;
+
+    public function requireById(ClientId $clientId): Client;
 }

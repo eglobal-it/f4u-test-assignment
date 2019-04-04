@@ -26,4 +26,13 @@ class DoctrineClientRepository extends EntityRepository implements ClientReposit
     {
         return $this->find($clientId);
     }
+
+    public function requireById(ClientId $clientId): Client
+    {
+        $client = $this->byId($clientId);
+        if (!$client instanceof Client) {
+            throw new \RuntimeException('Not found client with given identifier');
+        }
+        return $client;
+    }
 }

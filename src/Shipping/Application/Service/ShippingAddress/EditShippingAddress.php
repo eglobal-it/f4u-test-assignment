@@ -6,7 +6,7 @@
  * Time: 08:13
  */
 
-namespace F4u\Shipping\Domain\Service\ShippingAddress;
+namespace F4u\Shipping\Application\Service\ShippingAddress;
 
 use F4u\Shipping\Domain\Model\ShippingAddress\ShippingAddress;
 use F4u\Shipping\Domain\Model\ShippingAddress\ShippingAddressId;
@@ -37,11 +37,11 @@ class EditShippingAddress
         ShippingAddressId $shippingAddressId,
         ShippingAddressParameters $shippingAddressParameters
     ) {
-        $shippingAddress = $this->repository->byId($shippingAddressId);
-        if (!$shippingAddress instanceof ShippingAddress) {
-            throw new \RuntimeException('Address with such id not found');
-        }
-        $shippingAddress->edit($shippingAddressParameters);
+        $shippingAddress = $this->repository->requireById($shippingAddressId);
+        $shippingAddress->edit(
+            $shippingAddressParameters->getAddress(),
+            $shippingAddressParameters->makeAsDefault()
+        );
 
         if ($shippingAddressParameters->makeAsDefault()) {
             $this->adjustAllShippingAddressesDefaultStatuses($shippingAddress);

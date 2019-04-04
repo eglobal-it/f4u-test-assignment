@@ -6,7 +6,7 @@
  * Time: 12:31
  */
 
-namespace F4u\Shipping\Domain\Service\ShippingAddress;
+namespace F4u\Shipping\Application\Service\ShippingAddress;
 
 
 use F4u\Shipping\Domain\Model\ShippingAddress\Address;

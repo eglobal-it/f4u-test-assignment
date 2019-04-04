@@ -6,7 +6,7 @@
  * Time: 08:13
  */
 
-namespace F4u\Shipping\Domain\Service\ShippingAddress;
+namespace F4u\Shipping\Application\Service\ShippingAddress;
 
 use F4u\Shipping\Domain\Model\ShippingAddress\ShippingAddress;
 use F4u\Shipping\Domain\Model\ShippingAddress\ShippingAddressId;
@@ -26,13 +26,8 @@ class RemoveShippingAddress
 
     public function run(ShippingAddressId $shippingAddressId)
     {
-        $shippingAddress = $this->shippingAddressRepository->byId($shippingAddressId);
-        if (!$shippingAddress instanceof ShippingAddress) {
-            throw new \RuntimeException('Requested shipping address not found');
-        }
-        if ($shippingAddress->isDefault()) {
-            throw new \RuntimeException('Cannoy remove the default shipping address');
-        }
+        $shippingAddress = $this->shippingAddressRepository->requireById($shippingAddressId);
+        $shippingAddress->checkThatRemovable();
         $this->shippingAddressRepository->remove($shippingAddress);
     }
 }

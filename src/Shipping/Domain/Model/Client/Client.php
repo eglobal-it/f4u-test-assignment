@@ -41,4 +41,16 @@ class Client
     {
         return $this->shippingAddresses;
     }
+
+    public function isNextShippingAddressForsedBeDefault(): bool
+    {
+        return $this->getShippingAddresses()->count() === 0;
+    }
+
+    public function checkThatShippingAddressIsAddable()
+    {
+        if ($this->getShippingAddresses()->count() === 3) {
+            throw new \OverflowException('Given client already has maximum (3) shipping addresses');
+        }
+    }
 }

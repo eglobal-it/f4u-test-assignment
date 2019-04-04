@@ -38,6 +38,15 @@ class DoctrineShippingAddressRepository extends EntityRepository implements Ship
         $entityManager->flush();
     }
 
+    public function requireById(ShippingAddressId $shippingAddressId): ShippingAddress
+    {
+        $shippingAddress = $this->byId($shippingAddressId);
+        if (!$shippingAddress instanceof ShippingAddress) {
+            throw new \RuntimeException('Requested shipping address not found');
+        }
+        return $shippingAddress;
+    }
+
     public function byId(ShippingAddressId $shippingAddressId): ShippingAddress
     {
         return $this->find($shippingAddressId);

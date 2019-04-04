@@ -6,7 +6,7 @@
  * Time: 08:13
  */
 
-namespace F4u\Shipping\Domain\Service\ShippingAddress;
+namespace F4u\Shipping\Application\Service\ShippingAddress;
 
 use F4u\Shipping\Domain\Model\Client\Client;
 use F4u\Shipping\Domain\Model\Client\ClientId;
@@ -36,21 +36,14 @@ class AddShippingAddress
 
     public function run(ClientId $clientId, ShippingAddressParameters $shippingAddressParameters)
     {
-        $client = $this->clientRepository->byId($clientId);
-        if (!$client instanceof Client) {
-            throw new \RuntimeException('Not found client with given identifier');
+        $client = $this->clientRepository->requireById($clientId);
+        if ($client->isNextShippingAddressForsedBeDefault()) {
+            $shippingAddressParameters = new ShippingAddressParameters(
+                $shippingAddressParameters->getAddress(),
+                true
+            );
         }
-        switch ($client->getShippingAddresses()->count()) {
-            case 0:
-                $shippingAddressParameters = new ShippingAddressParameters(
-                    $shippingAddressParameters->getAddress(),
-                    true
-                );
-                break;
-            case 3:
-                throw new \OverflowException('Given client already has maximum (3) shipping addresses');
-                break;
-        }
+        $client->checkThatShippingAddressIsAddable();
         $newShippingAddress = ShippingAddress::factory($client, $shippingAddressParameters);
 
         if ($shippingAddressParameters->makeAsDefault()) {
