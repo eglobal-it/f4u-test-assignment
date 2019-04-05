@@ -72,9 +72,12 @@ class AddShippingAddressTest extends TestCase
             new ShippingAddressParameters($this->address1, $default)
         );
         $this->assertEquals(
-            '{"shipping_address_uuid":"new","client_uuid":"without-stored-addresses","is_default":true,"zipcode":"LV-1020","street":"Rigas","city":"Riga","country":"LV"}',
+            '{"shipping_address_uuid":"new","client_uuid":"without-stored-addresses",' .
+            '"is_default":true,"zipcode":"LV-1020",' .
+            '"street":"Rigas","city":"Riga","country":"LV"}',
             $this->transformer->read()
         );
+        $this->addrRepo->reset();
     }
 
     public function provideForTestAdding()
@@ -100,7 +103,9 @@ class AddShippingAddressTest extends TestCase
             new ShippingAddressParameters($this->address1, $default)
         );
         $this->assertEquals(
-            '{"shipping_address_uuid":"new","client_uuid":"with-address","is_default":' . ($default ? 'true' : 'false') . ',"zipcode":"LV-1020","street":"Rigas","city":"Riga","country":"LV"}',
+            '{"shipping_address_uuid":"new","client_uuid":"with-address",' .
+            '"is_default":' . ($default ? 'true' : 'false') . ',"zipcode":"LV-1020",' .
+            '"street":"Rigas","city":"Riga","country":"LV"}',
             $this->transformer->read()
         );
 
