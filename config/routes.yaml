@@ -1,3 +1,34 @@
 index:
     path: /
     controller: F4u\Shipping\Infrastructure\Delivery\Controller\DefaultController::index
+
+client_info:
+    methods: GET
+    path: /api/v1/client/{clientId}
+    controller: F4u\Shipping\Infrastructure\Delivery\Controller\Api\ClientController::info
+
+shipping_address_info:
+    methods: GET
+    path: /api/v1/shipping-address/{shippingAddressId}
+    controller: \F4u\Shipping\Infrastructure\Delivery\Controller\Api\ShippingAddressController::info
+
+shipping_address_list:
+    methods: GET
+    path: /api/v1/shipping-address/client/{clientId}
+    controller: F4u\Shipping\Infrastructure\Delivery\Controller\Api\ShippingAddressController::list
+
+shipping_address_add:
+    methods: POST
+    path: /api/v1/shipping-address
+    controller: F4u\Shipping\Infrastructure\Delivery\Controller\Api\ShippingAddressController::add
+
+shipping_address_edit:
+    methods: PATCH
+    path: /api/v1/shipping-address
+    controller: F4u\Shipping\Infrastructure\Delivery\Controller\Api\ShippingAddressController::edit
+
+shipping_address_remove:
+    methods: DELETE
+    path: /api/v1/shipping-address/{shippingAddressId}
+    controller: F4u\Shipping\Infrastructure\Delivery\Controller\Api\ShippingAddressController::remove
+

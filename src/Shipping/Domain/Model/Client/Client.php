@@ -11,7 +11,7 @@ namespace F4u\Shipping\Domain\Model\Client;
 use Doctrine\Common\Collections\Collection;
 use F4u\Shipping\Domain\Model\ShippingAddress\ShippingAddress;
 
-class Client
+class Client implements \JsonSerializable
 {
     /**
      * @var ClientId
@@ -52,5 +52,14 @@ class Client
         if ($this->getShippingAddresses()->count() === 3) {
             throw new \OverflowException('Given client already has maximum (3) shipping addresses');
         }
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'client_uuid' => (string) $this->clientId,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+        ];
     }
 }

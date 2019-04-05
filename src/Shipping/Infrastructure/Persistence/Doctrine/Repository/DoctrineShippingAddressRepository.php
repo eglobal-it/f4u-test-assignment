@@ -8,34 +8,41 @@
 
 namespace F4u\Shipping\Infrastructure\Persistence\Doctrine\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use F4u\Shipping\Domain\Model\ShippingAddress\ShippingAddress;
 use F4u\Shipping\Domain\Model\ShippingAddress\ShippingAddressId;
 use F4u\Shipping\Domain\Model\ShippingAddress\ShippingAddressRepository;
 
-class DoctrineShippingAddressRepository extends EntityRepository implements ShippingAddressRepository
+class DoctrineShippingAddressRepository implements ShippingAddressRepository
 {
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     public function save(ShippingAddress $shippingAddress)
     {
-        $entityManager = $this->getEntityManager();
-        $entityManager->persist($shippingAddress);
-        $entityManager->flush();
+        $this->entityManager->persist($shippingAddress);
+        $this->entityManager->flush();
     }
 
     public function remove(ShippingAddress $shippingAddress)
     {
-        $entityManager = $this->getEntityManager();
-        $entityManager->remove($shippingAddress);
-        $entityManager->flush();
+        $this->entityManager->remove($shippingAddress);
+        $this->entityManager->flush();
     }
 
     public function saveSet($shippingAddresses)
     {
-        $entityManager = $this->getEntityManager();
         foreach ($shippingAddresses as $shippingAddresse) {
-            $entityManager->persist($shippingAddresse);
+            $this->entityManager->persist($shippingAddresse);
         }
-        $entityManager->flush();
+        $this->entityManager->flush();
     }
 
     public function requireById(ShippingAddressId $shippingAddressId): ShippingAddress
@@ -47,8 +54,8 @@ class DoctrineShippingAddressRepository extends EntityRepository implements Ship
         return $shippingAddress;
     }
 
-    public function byId(ShippingAddressId $shippingAddressId): ShippingAddress
+    public function byId(ShippingAddressId $shippingAddressId)
     {
-        return $this->find($shippingAddressId);
+        return $this->entityManager->find(ShippingAddress::class, $shippingAddressId);
     }
 }

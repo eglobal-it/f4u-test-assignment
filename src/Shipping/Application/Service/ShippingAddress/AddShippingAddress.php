@@ -8,7 +8,7 @@
 
 namespace F4u\Shipping\Application\Service\ShippingAddress;
 
-use F4u\Shipping\Domain\Model\Client\Client;
+use F4u\Shipping\Application\Service\ShippingAddress\DataTransformer\ShippingAddressDataTransformer;
 use F4u\Shipping\Domain\Model\Client\ClientId;
 use F4u\Shipping\Domain\Model\Client\ClientRepository;
 use F4u\Shipping\Domain\Model\ShippingAddress\ShippingAddress;
@@ -26,12 +26,19 @@ class AddShippingAddress
      */
     private $shippingAddressRepository;
 
+    /**
+     * @var ShippingAddressDataTransformer
+     */
+    private $dataTransformer;
+
     public function __construct(
         ClientRepository $clientRepository,
-        ShippingAddressRepository $shippingAddressRepository
+        ShippingAddressRepository $shippingAddressRepository,
+        ShippingAddressDataTransformer $dataTransformer
     ) {
         $this->clientRepository = $clientRepository;
         $this->shippingAddressRepository = $shippingAddressRepository;
+        $this->dataTransformer = $dataTransformer;
     }
 
     public function run(ClientId $clientId, ShippingAddressParameters $shippingAddressParameters)
@@ -44,7 +51,11 @@ class AddShippingAddress
             );
         }
         $client->checkThatShippingAddressIsAddable();
-        $newShippingAddress = ShippingAddress::factory($client, $shippingAddressParameters);
+        $newShippingAddress = ShippingAddress::factory(
+            $client,
+            $shippingAddressParameters->getAddress(),
+            $shippingAddressParameters->makeAsDefault()
+        );
 
         if ($shippingAddressParameters->makeAsDefault()) {
             $this->adjustAllShippingAddressesDefaultStatuses($newShippingAddress);
@@ -56,6 +67,7 @@ class AddShippingAddress
         } else {
             $this->shippingAddressRepository->save($newShippingAddress);
         }
+        $this->dataTransformer->write($newShippingAddress);
     }
 
     private function adjustAllShippingAddressesDefaultStatuses(ShippingAddress $shippingAddress)

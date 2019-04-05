@@ -38,4 +38,36 @@ class Address
         $this->city = $city;
         $this->country = $country;
     }
+
+    /**
+     * @return string
+     */
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity(): string
+    {
+        return $this->city;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStreet(): string
+    {
+        return $this->street;
+    }
+
+    /**
+     * @return string
+     */
+    public function getZipcode(): string
+    {
+        return $this->zipcode;
+    }
 }

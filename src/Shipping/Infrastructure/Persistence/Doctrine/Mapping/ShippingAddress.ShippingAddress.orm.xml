@@ -11,8 +11,13 @@
         </id>
 
         <field name="isDefault" column="is_default" type="boolean" />
+        <field name="clientId" column="client_uuid" type="ClientId" />
 
-        <many-to-one field="client" target-entity="F4u\Shipping\Domain\Model\Client\Client">
+        <many-to-one field="client"
+                     target-entity="F4u\Shipping\Domain\Model\Client\Client"
+                     fetch="EXTRA_LAZY"
+                     inversed-by="shippingAddresses"
+        >
             <join-column name="client_uuid" referenced-column-name="client_uuid" />
         </many-to-one>
 

@@ -34,7 +34,7 @@ interface ShippingAddressRepository
     /**
      * @param ShippingAddressId $shippingAddressId
      *
-     * @return ShippingAddress
+     * @return ShippingAddress|null
      */
     public function byId(ShippingAddressId $shippingAddressId);
 
@@ -43,5 +43,5 @@ interface ShippingAddressRepository
      *
      * @return ShippingAddress
      */
-    public function requireById(ShippingAddressId $shippingAddressId);
+    public function requireById(ShippingAddressId $shippingAddressId): ShippingAddress;
 }

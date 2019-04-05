@@ -8,23 +8,32 @@
 
 namespace F4u\Shipping\Infrastructure\Persistence\Doctrine\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use F4u\Shipping\Domain\Model\Client\Client;
 use F4u\Shipping\Domain\Model\Client\ClientId;
 use F4u\Shipping\Domain\Model\Client\ClientRepository;
 
-class DoctrineClientRepository extends EntityRepository implements ClientRepository
+class DoctrineClientRepository implements ClientRepository
 {
-    public function save(Client $client)
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $entityManager = $this->getEntityManager();
-        $entityManager->persist($client);
-        $entityManager->flush();
+        $this->entityManager = $entityManager;
     }
 
-    public function byId(ClientId $clientId): Client
+    public function save(Client $client)
     {
-        return $this->find($clientId);
+        $this->entityManager->persist($client);
+        $this->entityManager->flush();
+    }
+
+    public function byId(ClientId $clientId)
+    {
+        return $this->entityManager->find(Client::class, $clientId);
     }
 
     public function requireById(ClientId $clientId): Client

@@ -11,12 +11,17 @@ namespace F4u\Shipping\Domain\Model\ShippingAddress;
 use F4u\Shipping\Domain\Model\Client\Client;
 use F4u\Shipping\Domain\Model\Client\ClientId;
 
-class ShippingAddress
+class ShippingAddress implements \JsonSerializable
 {
     /**
      * @var ShippingAddressId
      */
     private $shippingAddressId;
+
+    /**
+     * @var ClientId
+     */
+    private $clientId;
 
     /**
      * @var Client
@@ -82,5 +87,18 @@ class ShippingAddress
         $this->address = $address;
 
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'shipping_address_uuid' => (string) $this->shippingAddressId,
+            'client_uuid' => (string) $this->clientId,
+            'is_default' => $this->isDefault,
+            'zipcode' => $this->address->getZipcode(),
+            'street' => $this->address->getStreet(),
+            'city' => $this->address->getCity(),
+            'country' => $this->address->getCountry(),
+        ];
     }
 }
