@@ -42,10 +42,10 @@ class ShippingAddress implements \JsonSerializable
     {
     }
 
-    public static function factory(Client $client, Address $Address, bool $makeAsDefault): self
+    public static function factory(ShippingAddressId $shippingAddressId, Client $client, Address $Address, bool $makeAsDefault): self
     {
         $shippingAddress = (new self())->setClient($client)->setAddress($Address);
-        $shippingAddress->shippingAddressId = new ShippingAddressId();
+        $shippingAddress->shippingAddressId = $shippingAddressId;
         $shippingAddress->isDefault = $makeAsDefault;
         return $shippingAddress;
     }
@@ -75,6 +75,14 @@ class ShippingAddress implements \JsonSerializable
         return $this->client;
     }
 
+    /**
+     * @return ShippingAddressId
+     */
+    public function getShippingAddressId(): ShippingAddressId
+    {
+        return $this->shippingAddressId;
+    }
+
     private function setClient(Client $client): self
     {
         $this->client = $client;
@@ -93,7 +101,7 @@ class ShippingAddress implements \JsonSerializable
     {
         return [
             'shipping_address_uuid' => (string) $this->shippingAddressId,
-            'client_uuid' => (string) $this->clientId,
+            'client_uuid' => (string) $this->client->getClientId(),
             'is_default' => $this->isDefault,
             'zipcode' => $this->address->getZipcode(),
             'street' => $this->address->getStreet(),

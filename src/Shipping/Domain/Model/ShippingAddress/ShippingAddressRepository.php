@@ -11,6 +11,11 @@ namespace F4u\Shipping\Domain\Model\ShippingAddress;
 interface ShippingAddressRepository
 {
     /**
+     * @return ShippingAddressId
+     */
+    public function nextIdentity(): ShippingAddressId;
+
+    /**
      * @param ShippingAddress $shippingAddress
      *
      * @return void

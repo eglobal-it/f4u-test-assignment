@@ -52,6 +52,7 @@ class AddShippingAddress
         }
         $client->checkThatShippingAddressIsAddable();
         $newShippingAddress = ShippingAddress::factory(
+            $this->shippingAddressRepository->nextIdentity(),
             $client,
             $shippingAddressParameters->getAddress(),
             $shippingAddressParameters->makeAsDefault()

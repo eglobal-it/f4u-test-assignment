@@ -9,8 +9,6 @@
 namespace F4u\Shipping\Domain\Model\ShippingAddress;
 
 
-use Ramsey\Uuid\Uuid;
-
 class ShippingAddressId
 {
     /**
@@ -18,9 +16,9 @@ class ShippingAddressId
      */
     private $id;
 
-    public function __construct($id = null)
+    public function __construct($id)
     {
-        $this->id = $id ?: Uuid::uuid4()->toString();
+        $this->id = $id;
     }
 
     public function __toString()

@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use F4u\Shipping\Domain\Model\ShippingAddress\ShippingAddress;
 use F4u\Shipping\Domain\Model\ShippingAddress\ShippingAddressId;
 use F4u\Shipping\Domain\Model\ShippingAddress\ShippingAddressRepository;
+use Ramsey\Uuid\Uuid;
 
 class DoctrineShippingAddressRepository implements ShippingAddressRepository
 {
@@ -23,6 +24,11 @@ class DoctrineShippingAddressRepository implements ShippingAddressRepository
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
+    }
+
+    public function nextIdentity(): ShippingAddressId
+    {
+        return new ShippingAddressId(Uuid::uuid4()->toString());
     }
 
     public function save(ShippingAddress $shippingAddress)

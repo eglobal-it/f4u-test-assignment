@@ -8,6 +8,7 @@
 
 namespace F4u\Shipping\Domain\Model\Client;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use F4u\Shipping\Domain\Model\ShippingAddress\ShippingAddress;
 
@@ -32,6 +33,18 @@ class Client implements \JsonSerializable
      * @var ShippingAddress[]|Collection
      */
     private $shippingAddresses;
+
+    public function __construct(
+        ClientId $clientId = null,
+        $firstname = null,
+        $lastname = null,
+        Collection $shippingAddresses = null
+    ) {
+        $this->clientId = $clientId;
+        $this->firstname = $firstname;
+        $this->lastname = $lastname;
+        $this->shippingAddresses = $shippingAddresses ?? new ArrayCollection();
+    }
 
     /**
      *
@@ -61,5 +74,13 @@ class Client implements \JsonSerializable
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
         ];
+    }
+
+    /**
+     * @return ClientId
+     */
+    public function getClientId(): ClientId
+    {
+        return $this->clientId;
     }
 }
