@@ -1,0 +1,57 @@
+services:
+  #  Create DTO
+  app.infrastructure.delivery.address.stage.create_dto_for_create_address:
+    class: App\Project\Infrastructure\DeliveryModule\Stage\Address\CreateDTOForCreateAddress
+    arguments:
+      - '@App\Project\Context\DeliveryModule\DeliveryContractInterface'
+      - '@app.infrastructure.user.client.stage.get_client'
+
+  app.infrastructure.delivery.address.stage.create_dto_for_update_address:
+    class: App\Project\Infrastructure\DeliveryModule\Stage\Address\CreateDTOForUpdateAddress
+
+  #  Action Stages
+  app.infrastructure.delivery.address.stage.get_listing:
+    class: App\Project\Infrastructure\DeliveryModule\Stage\Address\GetListing
+    arguments:
+      - '@App\Project\Context\DeliveryModule\DeliveryContractInterface'
+
+  app.infrastructure.delivery.address.stage.get_address:
+    class: App\Project\Infrastructure\DeliveryModule\Stage\Address\GetAddress
+    arguments:
+      - '@App\Project\Context\DeliveryModule\DeliveryContractInterface'
+
+  app.infrastructure.delivery.address.stage.create_address:
+    class: App\Project\Infrastructure\DeliveryModule\Stage\Address\CreateAddress
+    arguments:
+      - '@App\Project\Context\DeliveryModule\DeliveryContractInterface'
+
+  app.infrastructure.delivery.address.stage.update_address:
+    class: App\Project\Infrastructure\DeliveryModule\Stage\Address\UpdateAddress
+    arguments:
+      - '@App\Project\Context\DeliveryModule\DeliveryContractInterface'
+
+  app.infrastructure.delivery.address.stage.delete_address:
+    class: App\Project\Infrastructure\DeliveryModule\Stage\Address\DeleteAddress
+    arguments:
+      - '@App\Project\Context\DeliveryModule\DeliveryContractInterface'
+
+  app.infrastructure.delivery.address.stage.get_default_address:
+    class: App\Project\Infrastructure\DeliveryModule\Stage\Address\GetDefaultAddress
+    arguments:
+      - '@App\Project\Context\DeliveryModule\DeliveryContractInterface'
+
+  app.infrastructure.delivery.address.stage.set_default_address:
+    class: App\Project\Infrastructure\DeliveryModule\Stage\Address\SetDefaultAddress
+    arguments:
+      - '@App\Project\Context\DeliveryModule\DeliveryContractInterface'
+
+  #  Transformers
+  app.infrastructure.delivery.address.stage.transform_address_entity:
+    class: App\Project\Infrastructure\Common\Stage\TransformToArray
+    arguments:
+      - '@app.infrastructure.delivery.address.transformer.address_entity_to_array'
+
+  app.infrastructure.delivery.address.stage.transform_address_entity_listing:
+    class: App\Project\Infrastructure\Common\Stage\TransformToArray
+    arguments:
+      - '@app.infrastructure.delivery.address.transformer.address_entity_listing_to_array'

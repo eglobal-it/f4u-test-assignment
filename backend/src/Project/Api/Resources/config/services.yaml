@@ -1,0 +1,21 @@
+services:
+  App\Project\Api\EventListener\ValidationExceptionListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.exception, priority: 3 }
+
+  App\Project\Api\EventListener\EntityNotFoundExceptionListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.exception, priority: 2 }
+
+  App\Project\Api\EventListener\InternalExceptionListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.exception, priority: 1 }
+
+  App\Project\Api\EventListener\SymfonyRequestTransformToJsonListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.request, priority: 100 }
+
+imports:
+  - { resource: "./stages.yaml"}
+  - { resource: "./*/*.yaml"}
+  - { resource: "./*/*/*.yaml"}

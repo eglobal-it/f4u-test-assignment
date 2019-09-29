@@ -1,0 +1,42 @@
+services:
+  app.api.v1.delivery.address.controller.listing:
+    class: App\Project\Api\Controller\FlowController
+    bind:
+      $requestFlow: '@app.api.v1.delivery.address.flow.listing'
+    tags: [ 'controller.service_arguments' ]
+
+  app.api.v1.delivery.address.controller.read:
+    class: App\Project\Api\Controller\FlowController
+    bind:
+      $requestFlow: '@app.api.v1.delivery.address.flow.read'
+    tags: [ 'controller.service_arguments' ]
+
+  app.api.v1.delivery.address.controller.create:
+    class: App\Project\Api\Controller\FlowController
+    bind:
+      $requestFlow: '@app.api.v1.delivery.address.flow.create'
+    tags: [ 'controller.service_arguments' ]
+
+  app.api.v1.delivery.address.controller.update:
+    class: App\Project\Api\Controller\FlowController
+    bind:
+      $requestFlow: '@app.api.v1.delivery.address.flow.update'
+    tags: [ 'controller.service_arguments' ]
+
+  app.api.v1.delivery.address.controller.delete:
+    class: App\Project\Api\Controller\FlowController
+    bind:
+      $requestFlow: '@app.api.v1.delivery.address.flow.delete'
+    tags: [ 'controller.service_arguments' ]
+
+  app.api.v1.delivery.address.controller.get_default:
+    class: App\Project\Api\Controller\FlowController
+    bind:
+      $requestFlow: '@app.api.v1.delivery.address.flow.get_default'
+    tags: [ 'controller.service_arguments' ]
+
+  app.api.v1.delivery.address.controller.set_default:
+    class: App\Project\Api\Controller\FlowController
+    bind:
+      $requestFlow: '@app.api.v1.delivery.address.flow.set_default'
+    tags: [ 'controller.service_arguments' ]

@@ -1,0 +1,22 @@
+services:
+  #  RequestTransformers
+  app.api.v1.delivery.address.request_transformer.listing:
+    class: App\Project\Api\RequestTransformer\Delivery\Address\ListingAndGetDefaultRequestTransformer
+
+  app.api.v1.delivery.address.request_transformer.read:
+    class: App\Project\Api\RequestTransformer\Delivery\Address\ReadAndDeleteAndSetDefaultRequestTransformer
+
+  app.api.v1.delivery.address.request_transformer.create:
+    class: App\Project\Api\RequestTransformer\Delivery\Address\CreateRequestTransformer
+
+  app.api.v1.delivery.address.request_transformer.update:
+    class: App\Project\Api\RequestTransformer\Delivery\Address\UpdateRequestTransformer
+
+  app.api.v1.delivery.address.request_transformer.delete:
+    alias: 'app.api.v1.delivery.address.request_transformer.read'
+
+  app.api.v1.delivery.address.request_transformer.get_default:
+    alias: 'app.api.v1.delivery.address.request_transformer.listing'
+
+  app.api.v1.delivery.address.request_transformer.set_default:
+    alias: 'app.api.v1.delivery.address.request_transformer.read'

@@ -1,0 +1,35 @@
+App\Project\Context\DeliveryModule\Address\Entity\AddressEntity:
+  type: entity
+  table: delivery_address
+  repositoryClass: App\Project\Infrastructure\DeliveryModule\Repository\AddressRepository
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    zipCode:
+      type: string
+      column: zip_code
+      length: 10
+    country:
+      type: string
+      length: 255
+    city:
+      type: string
+      length: 255
+    street:
+      type: string
+      length: 255
+    isDefault:
+      type: boolean
+      dafault: false
+      column: is_default
+
+  manyToOne:
+    client:
+      targetEntity: App\Project\Context\UserModule\Client\Entity\ClientEntity
+      joinColumn:
+        name: client_id
+        referencedColumnName: id
+        onDelete: CASCADE
+      cascade: [ 'persist' ]

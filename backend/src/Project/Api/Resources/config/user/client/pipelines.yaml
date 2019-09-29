@@ -1,0 +1,30 @@
+services:
+  # Flows
+  app.api.v1.user.client.flow.listing:
+    class: App\Project\Api\Flow\Flow
+    arguments:
+      - '@app.api.v1.user.client.process.listing'
+
+  app.api.v1.user.client.flow.read:
+    class: App\Project\Api\Flow\Flow
+    arguments:
+      - '@app.api.v1.user.client.process.read'
+
+  # Pipelines
+  app.api.v1.user.client.process.listing:
+    class: League\Pipeline\Pipeline
+    arguments:
+      - ~
+      - '@app.infrastructure.user.client.stage.get_listing'
+      - '@app.infrastructure.user.client.stage.transform_client_entity_listing'
+      - '@app.api.stage.make_success_response'
+
+  app.api.v1.user.client.process.read:
+    class: League\Pipeline\Pipeline
+    arguments:
+      - ~
+      - '@app.api.v1.user.client.stage.transform_http_request.read'
+      - '@app.api.stage.validate'
+      - '@app.infrastructure.user.client.stage.get_client'
+      - '@app.infrastructure.user.client.stage.transform_client_entity'
+      - '@app.api.stage.make_success_response'

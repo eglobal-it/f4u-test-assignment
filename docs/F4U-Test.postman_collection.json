@@ -1,0 +1,324 @@
+{
+	"info": {
+		"_postman_id": "a306a93e-f8b9-4664-8eb5-7ffb52c8287a",
+		"name": "F4U/Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Address",
+					"item": [
+						{
+							"name": "Listing",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://0.0.0.0:8099/api/v1/client/1/address",
+									"protocol": "http",
+									"host": [
+										"0",
+										"0",
+										"0",
+										"0"
+									],
+									"port": "8099",
+									"path": [
+										"api",
+										"v1",
+										"client",
+										"1",
+										"address"
+									]
+								},
+								"description": "http://0.0.0.0:8099/api/v1/client/1/address"
+							},
+							"response": []
+						},
+						{
+							"name": "Read",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://0.0.0.0:8099/api/v1/client/1/address/1",
+									"protocol": "http",
+									"host": [
+										"0",
+										"0",
+										"0",
+										"0"
+									],
+									"port": "8099",
+									"path": [
+										"api",
+										"v1",
+										"client",
+										"1",
+										"address",
+										"1"
+									]
+								},
+								"description": "http://0.0.0.0:8099/api/v1/client/1/address/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Address",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"zip_code\": \"62000\",\n\t\"country\": \"Russian Federation\",\n\t\"city\": \"Ekaterinburg\",\n\t\"street\": \"Malisheva st\"\n}"
+								},
+								"url": {
+									"raw": "http://0.0.0.0:8099/api/v1/client/2/address",
+									"protocol": "http",
+									"host": [
+										"0",
+										"0",
+										"0",
+										"0"
+									],
+									"port": "8099",
+									"path": [
+										"api",
+										"v1",
+										"client",
+										"2",
+										"address"
+									]
+								},
+								"description": "http://0.0.0.0:8099/api/v1/client/2/address"
+							},
+							"response": []
+						},
+						{
+							"name": "Update Address",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"zip_code\": \"62000\",\n\t\"country\": \"Russian Federation\",\n\t\"city\": \"Ekaterinburg\",\n\t\"street\": \"Malisheva st\"\n}"
+								},
+								"url": {
+									"raw": "http://0.0.0.0:8099/api/v1/client/2/address/5",
+									"protocol": "http",
+									"host": [
+										"0",
+										"0",
+										"0",
+										"0"
+									],
+									"port": "8099",
+									"path": [
+										"api",
+										"v1",
+										"client",
+										"2",
+										"address",
+										"5"
+									]
+								},
+								"description": "http://0.0.0.0:8099/api/v1/client/2/address/5"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Address",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://0.0.0.0:8099/api/v1/client/2/address/5",
+									"protocol": "http",
+									"host": [
+										"0",
+										"0",
+										"0",
+										"0"
+									],
+									"port": "8099",
+									"path": [
+										"api",
+										"v1",
+										"client",
+										"2",
+										"address",
+										"5"
+									]
+								},
+								"description": "http://0.0.0.0:8099/api/v1/client/2/address/5"
+							},
+							"response": []
+						},
+						{
+							"name": "Set Default",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://0.0.0.0:8099/api/v1/client/2/address/7/default",
+									"protocol": "http",
+									"host": [
+										"0",
+										"0",
+										"0",
+										"0"
+									],
+									"port": "8099",
+									"path": [
+										"api",
+										"v1",
+										"client",
+										"2",
+										"address",
+										"7",
+										"default"
+									]
+								},
+								"description": "http://0.0.0.0:8099/api/v1/client/2/address/7/default"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Default Address",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://0.0.0.0:8099/api/v1/client/2/address/default",
+									"protocol": "http",
+									"host": [
+										"0",
+										"0",
+										"0",
+										"0"
+									],
+									"port": "8099",
+									"path": [
+										"api",
+										"v1",
+										"client",
+										"2",
+										"address",
+										"default"
+									]
+								},
+								"description": "http://0.0.0.0:8099/api/v1/client/2/address/default"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Listing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://0.0.0.0:8099/api/v1/client",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "8099",
+							"path": [
+								"api",
+								"v1",
+								"client"
+							]
+						},
+						"description": "http://0.0.0.0:8099/api/v1/client"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://0.0.0.0:8099/api/v1/client/1",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "8099",
+							"path": [
+								"api",
+								"v1",
+								"client",
+								"1"
+							]
+						},
+						"description": "http://0.0.0.0:8099/api/v1/client/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

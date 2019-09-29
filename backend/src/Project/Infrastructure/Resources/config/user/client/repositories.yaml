@@ -1,0 +1,12 @@
+services:
+  App\Project\Context\UserModule\Client\Repository\ClientRepositoryInterface:
+    alias: 'App\Project\Infrastructure\UserModule\Repository\ClientRepository'
+    public: true
+
+  App\Project\Infrastructure\UserModule\Repository\ClientRepository:
+    class: App\Project\Infrastructure\UserModule\Repository\ClientRepository
+    public: true
+    arguments:
+      - '@Doctrine\Common\Persistence\ManagerRegistry'
+      - 'App\Project\Context\UserModule\Client\Entity\ClientEntity'
+    tags: ['doctrine.repository_service']

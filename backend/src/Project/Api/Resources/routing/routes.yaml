@@ -1,0 +1,44 @@
+app.api.v1.user.client.listing:
+  path: /v1/client
+  controller: app.api.v1.user.client.controller.listing:index
+  methods: [GET]
+
+app.api.v1.user.client.read:
+  path: /v1/client/{clientId}
+  controller: app.api.v1.user.client.controller.read:index
+  methods: [GET]
+
+app.api.v1.delivery.address.listing:
+  path: /v1/client/{clientId}/address
+  controller: app.api.v1.delivery.address.controller.listing:index
+  methods: [GET]
+
+app.api.v1.delivery.address.get_default:
+  path: /v1/client/{clientId}/address/default
+  controller: app.api.v1.delivery.address.controller.get_default:index
+  methods: [GET]
+
+app.api.v1.delivery.address.read:
+  path: /v1/client/{clientId}/address/{addressId}
+  controller: app.api.v1.delivery.address.controller.read:index
+  methods: [GET]
+
+app.api.v1.delivery.address.create:
+  path: /v1/client/{clientId}/address
+  controller: app.api.v1.delivery.address.controller.create:index
+  methods: [POST]
+
+app.api.v1.delivery.address.update:
+  path: /v1/client/{clientId}/address/{addressId}
+  controller: app.api.v1.delivery.address.controller.update:index
+  methods: [PUT]
+
+app.api.v1.delivery.address.delete:
+  path: /v1/client/{clientId}/address/{addressId}
+  controller: app.api.v1.delivery.address.controller.delete:index
+  methods: [DELETE]
+
+app.api.v1.delivery.address.set_default:
+  path: /v1/client/{clientId}/address/{addressId}/default
+  controller: app.api.v1.delivery.address.controller.set_default:index
+  methods: [PUT]

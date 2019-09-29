@@ -1,0 +1,20 @@
+services:
+  app.api.stage.validate:
+    class: App\Project\Api\Stage\Validate
+    arguments:
+      - '@validator'
+
+  app.api.stage.make_success_response:
+    class: App\Project\Api\Stage\MakeResponse
+    arguments:
+      - !php/const App\Project\Api\Response\ResponseInterface::RESPONSE_CODE_SUCCESS
+
+  app.api.stage.make_no_content_response:
+    class: App\Project\Api\Stage\MakeResponse
+    arguments:
+      - !php/const App\Project\Api\Response\ResponseInterface::RESPONSE_CODE_NO_CONTENT
+
+  app.api.stage.make_created_response:
+    class: App\Project\Api\Stage\MakeResponse
+    arguments:
+      - !php/const App\Project\Api\Response\ResponseInterface::RESPONSE_CODE_CREATED

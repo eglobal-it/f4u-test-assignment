@@ -1,0 +1,109 @@
+services:
+  # Flows
+  app.api.v1.delivery.address.flow.listing:
+    class: App\Project\Api\Flow\Flow
+    arguments:
+      - '@app.api.v1.delivery.address.process.listing'
+
+  app.api.v1.delivery.address.flow.read:
+    class: App\Project\Api\Flow\Flow
+    arguments:
+      - '@app.api.v1.delivery.address.process.read'
+
+  app.api.v1.delivery.address.flow.create:
+    class: App\Project\Api\Flow\Flow
+    arguments:
+      - '@app.api.v1.delivery.address.process.create'
+
+  app.api.v1.delivery.address.flow.update:
+    class: App\Project\Api\Flow\Flow
+    arguments:
+      - '@app.api.v1.delivery.address.process.update'
+
+  app.api.v1.delivery.address.flow.delete:
+    class: App\Project\Api\Flow\Flow
+    arguments:
+      - '@app.api.v1.delivery.address.process.delete'
+
+  app.api.v1.delivery.address.flow.get_default:
+    class: App\Project\Api\Flow\Flow
+    arguments:
+      - '@app.api.v1.delivery.address.process.get_default'
+
+  app.api.v1.delivery.address.flow.set_default:
+    class: App\Project\Api\Flow\Flow
+    arguments:
+      - '@app.api.v1.delivery.address.process.set_default'
+
+  # Pipelines
+  app.api.v1.delivery.address.process.listing:
+    class: League\Pipeline\Pipeline
+    arguments:
+      - ~
+      - '@app.api.v1.delivery.address.stage.transform_http_request.listing'
+      - '@app.api.stage.validate'
+      - '@app.infrastructure.user.client.stage.get_client'
+      - '@app.infrastructure.delivery.address.stage.get_listing'
+      - '@app.infrastructure.delivery.address.stage.transform_address_entity_listing'
+      - '@app.api.stage.make_success_response'
+
+  app.api.v1.delivery.address.process.read:
+    class: League\Pipeline\Pipeline
+    arguments:
+      - ~
+      - '@app.api.v1.delivery.address.stage.transform_http_request.read'
+      - '@app.api.stage.validate'
+      - '@app.infrastructure.delivery.address.stage.get_address'
+      - '@app.infrastructure.delivery.address.stage.transform_address_entity'
+      - '@app.api.stage.make_success_response'
+
+  app.api.v1.delivery.address.process.create:
+    class: League\Pipeline\Pipeline
+    arguments:
+      - ~
+      - '@app.api.v1.delivery.address.stage.transform_http_request.create'
+      - '@app.api.stage.validate'
+      - '@app.infrastructure.delivery.address.stage.create_dto_for_create_address'
+      - '@app.infrastructure.delivery.address.stage.create_address'
+      - '@app.infrastructure.delivery.address.stage.transform_address_entity'
+      - '@app.api.stage.make_created_response'
+
+  app.api.v1.delivery.address.process.update:
+    class: League\Pipeline\Pipeline
+    arguments:
+      - ~
+      - '@app.api.v1.delivery.address.stage.transform_http_request.update'
+      - '@app.api.stage.validate'
+      - '@app.infrastructure.delivery.address.stage.create_dto_for_update_address'
+      - '@app.infrastructure.delivery.address.stage.update_address'
+      - '@app.infrastructure.delivery.address.stage.transform_address_entity'
+      - '@app.api.stage.make_success_response'
+
+  app.api.v1.delivery.address.process.delete:
+    class: League\Pipeline\Pipeline
+    arguments:
+      - ~
+      - '@app.api.v1.delivery.address.stage.transform_http_request.delete'
+      - '@app.api.stage.validate'
+      - '@app.infrastructure.delivery.address.stage.delete_address'
+      - '@app.api.stage.make_no_content_response'
+
+  app.api.v1.delivery.address.process.set_default:
+    class: League\Pipeline\Pipeline
+    arguments:
+      - ~
+      - '@app.api.v1.delivery.address.stage.transform_http_request.set_default'
+      - '@app.api.stage.validate'
+      - '@app.infrastructure.delivery.address.stage.set_default_address'
+      - '@app.infrastructure.delivery.address.stage.transform_address_entity'
+      - '@app.api.stage.make_success_response'
+
+  app.api.v1.delivery.address.process.get_default:
+    class: League\Pipeline\Pipeline
+    arguments:
+      - ~
+      - '@app.api.v1.delivery.address.stage.transform_http_request.get_default'
+      - '@app.api.stage.validate'
+      - '@app.infrastructure.delivery.address.stage.get_default_address'
+      - '@app.infrastructure.delivery.address.stage.transform_address_entity'
+      - '@app.api.stage.make_success_response'

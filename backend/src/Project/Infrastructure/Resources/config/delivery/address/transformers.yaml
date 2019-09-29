@@ -1,0 +1,10 @@
+services:
+  app.infrastructure.delivery.address.transformer.address_entity_to_array:
+    class: App\Project\Infrastructure\DeliveryModule\Transformer\AddressEntityToArrayTransformer
+    arguments:
+      - '@App\Project\Context\DeliveryModule\DeliveryContractInterface'
+
+  app.infrastructure.delivery.address.transformer.address_entity_listing_to_array:
+    class: App\Project\Infrastructure\Common\Transformer\ListingTransformer
+    arguments:
+      - '@app.infrastructure.delivery.address.transformer.address_entity_to_array'

@@ -1,0 +1,4 @@
+services:
+  #  RequestTransformers
+  app.api.v1.user.client.request_transformer.read:
+    class: App\Project\Api\RequestTransformer\User\Client\ReadRequestTransformer

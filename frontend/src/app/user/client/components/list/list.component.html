@@ -1,0 +1,20 @@
+<div *ngIf="!isLoading">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">FirstName</th>
+      <th scope="col">LastName</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let client of clients">
+      <th scope="row">{{ client.getId() }}</th>
+      <td>{{ client.getFirstName() }}</td>
+      <td>{{ client.getLastName() }}</td>
+      <td><a class="nav-link" routerLink="{{client.getId()}}">View</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

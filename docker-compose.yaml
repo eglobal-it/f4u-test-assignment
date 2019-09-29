@@ -1,0 +1,48 @@
+version: '3.1'
+
+services:
+  db:
+    container_name: f4u-db
+    image: mysql:5.7.27
+    volumes:
+      - "./database:/var/lib/mysql"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: f4u
+      MYSQL_DATABASE: f4u
+      MYSQL_USER: f4u
+      MYSQL_PASSWORD: f4u
+    ports:
+      - 3306:3306
+    env_file:
+      - ./backend/.env
+    networks:
+      - f4u
+
+  php:
+    container_name: f4u-php
+    build:
+      context: deploy/php-fpm
+      args:
+        TIMEZONE: UTC
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ./backend/.env
+    networks:
+      - f4u
+
+  nginx:
+    container_name: f4u-ngxin
+    build: deploy/nginx
+    ports:
+      - 8099:80
+    volumes:
+      - ./backend/var/logs/nginx/:/var/log/nginx
+    env_file:
+      - ./backend/.env
+    networks:
+      - f4u
+
+networks:
+  f4u:

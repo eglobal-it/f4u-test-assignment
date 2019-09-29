@@ -1,0 +1,15 @@
+parameters:
+
+services:
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  App\DataFixtures\:
+    resource: '../src/DataFixtures'
+    tags: ['doctrine.fixture.orm']
+
+imports:
+  - { resource: "../src/Project/Context/Resources/config/*.php"}
+  - { resource: "../src/Project/Infrastructure/Resources/config/services.yaml"}
+  - { resource: "../src/Project/Api/Resources/config/services.yaml"}

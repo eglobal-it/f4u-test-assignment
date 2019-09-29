@@ -1,0 +1,10 @@
+services:
+  app.infrastructure.user.client.transformer.client_entity_to_array:
+    class: App\Project\Infrastructure\UserModule\Transformer\ClientEntityToArrayTransformer
+    arguments:
+      - '@App\Project\Context\UserModule\UserContractInterface'
+
+  app.infrastructure.user.client.transformer.client_entity_listing_to_array:
+    class: App\Project\Infrastructure\Common\Transformer\ListingTransformer
+    arguments:
+      - '@app.infrastructure.user.client.transformer.client_entity_to_array'

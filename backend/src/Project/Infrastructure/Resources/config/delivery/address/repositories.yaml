@@ -1,0 +1,12 @@
+services:
+  App\Project\Context\DeliveryModule\Address\Repository\AddressRepositoryInterface:
+    alias: 'App\Project\Infrastructure\DeliveryModule\Repository\AddressRepository'
+    public: true
+
+  App\Project\Infrastructure\DeliveryModule\Repository\AddressRepository:
+    class: App\Project\Infrastructure\DeliveryModule\Repository\AddressRepository
+    public: true
+    arguments:
+      - '@Doctrine\Common\Persistence\ManagerRegistry'
+      - 'App\Project\Context\DeliveryModule\Address\Entity\AddressEntity'
+    tags: ['doctrine.repository_service']

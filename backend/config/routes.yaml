@@ -1,0 +1,4 @@
+project:
+  resource: '../src/Project/Api/Resources/routing'
+  type: directory
+  prefix: /api

@@ -1,0 +1,5 @@
+services:
+  app.api.v1.user.client.stage.transform_http_request.read:
+    class: App\Project\Api\Stage\TransformHttpRequest
+    arguments:
+      - '@app.api.v1.user.client.request_transformer.read'

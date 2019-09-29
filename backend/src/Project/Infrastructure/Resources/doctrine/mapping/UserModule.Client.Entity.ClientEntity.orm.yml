@@ -1,0 +1,17 @@
+App\Project\Context\UserModule\Client\Entity\ClientEntity:
+  type: entity
+  table: clients
+  repositoryClass: App\Project\Infrastructure\UserModule\Repository\ClientRepository
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    firstName:
+      type: string
+      length: 255
+      column: first_name
+    lastName:
+      type: string
+      length: 255
+      column: last_name

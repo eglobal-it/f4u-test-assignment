@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-body">
+    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+      <div class="form-group">
+        <label for="zipCode">Zip Code</label>
+        <input type="text" class="form-control" id="zipCode" name="zipCode" aria-describedby="zipCodeHelp"
+               placeholder="Zip code" [(ngModel)]="dto.zipCode" required maxlength="10">
+        <small id="zipCodeHelp" class="form-text text-muted"></small>
+      </div>
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input type="text" class="form-control" id="country" name="country" aria-describedby="countryHelp"
+               placeholder="Country" [(ngModel)]="dto.country" required>
+        <small id="countryHelp" class="form-text text-muted"></small>
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" name="city" aria-describedby="cityHelp"
+               placeholder="City" [(ngModel)]="dto.city" required>
+        <small id="cityHelp" class="form-text text-muted"></small>
+      </div>
+      <div class="form-group">
+        <label for="street">Street</label>
+        <input type="text" class="form-control" id="street" name="street" aria-describedby="streetHelp"
+               placeholder="Street" [(ngModel)]="dto.street" required>
+        <small id="streetHelp" class="form-text text-muted"></small>
+      </div>
+      <div class="form-group" *ngIf="addressId == false">
+        <label for="isDefault">Set Default</label>
+        <input type="checkbox" class="form-check-input" id="isDefault" name="isDefault" aria-describedby="isDefaultHelp"
+               placeholder="Is Default" [(ngModel)]="dto.isDefault">
+        <small id="isDefaultHelp" class="form-text text-muted"></small>
+      </div>
+      <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group mr-2" role="group">
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+        <div class="btn-group mr-2" role="group">
+          <button type="submit" class="btn btn-btn-secondary" (click)="onClose()">Close</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+</div>

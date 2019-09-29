@@ -1,0 +1,5 @@
+.idea
+backend/var/log
+backend/var/logs
+backend/var/cache
+backend/.scannerwork

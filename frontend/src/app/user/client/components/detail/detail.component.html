@@ -1,0 +1,16 @@
+<table class="table table-striped" *ngIf="!isLoading && client">
+  <tbody>
+  <tr>
+    <th scope="row">ID</th>
+    <td>{{client.getId()}}</td>
+  </tr>
+  <tr>
+    <th scope="row">First Name</th>
+    <td>{{client.getFirstName()}}</td>
+  </tr>
+  <tr>
+    <th scope="row">Last Name</th>
+    <td>{{client.getLastName()}}</td>
+  </tr>
+  </tbody>
+</table>

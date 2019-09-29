@@ -1,0 +1,35 @@
+services:
+  app.api.v1.delivery.address.stage.transform_http_request.listing:
+    class: App\Project\Api\Stage\TransformHttpRequest
+    arguments:
+      - '@app.api.v1.delivery.address.request_transformer.listing'
+
+  app.api.v1.delivery.address.stage.transform_http_request.read:
+    class: App\Project\Api\Stage\TransformHttpRequest
+    arguments:
+      - '@app.api.v1.delivery.address.request_transformer.read'
+
+  app.api.v1.delivery.address.stage.transform_http_request.create:
+    class: App\Project\Api\Stage\TransformHttpRequest
+    arguments:
+      - '@app.api.v1.delivery.address.request_transformer.create'
+
+  app.api.v1.delivery.address.stage.transform_http_request.update:
+    class: App\Project\Api\Stage\TransformHttpRequest
+    arguments:
+      - '@app.api.v1.delivery.address.request_transformer.update'
+
+  app.api.v1.delivery.address.stage.transform_http_request.delete:
+    class: App\Project\Api\Stage\TransformHttpRequest
+    arguments:
+      - '@app.api.v1.delivery.address.request_transformer.delete'
+
+  app.api.v1.delivery.address.stage.transform_http_request.set_default:
+    class: App\Project\Api\Stage\TransformHttpRequest
+    arguments:
+      - '@app.api.v1.delivery.address.request_transformer.set_default'
+
+  app.api.v1.delivery.address.stage.transform_http_request.get_default:
+    class: App\Project\Api\Stage\TransformHttpRequest
+    arguments:
+      - '@app.api.v1.delivery.address.request_transformer.get_default'

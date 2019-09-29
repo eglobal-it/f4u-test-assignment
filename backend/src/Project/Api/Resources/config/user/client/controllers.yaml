@@ -1,0 +1,12 @@
+services:
+  app.api.v1.user.client.controller.listing:
+    class: App\Project\Api\Controller\FlowController
+    bind:
+      $requestFlow: '@app.api.v1.user.client.flow.listing'
+    tags: [ 'controller.service_arguments' ]
+
+  app.api.v1.user.client.controller.read:
+    class: App\Project\Api\Controller\FlowController
+    bind:
+      $requestFlow: '@app.api.v1.user.client.flow.read'
+    tags: [ 'controller.service_arguments' ]
