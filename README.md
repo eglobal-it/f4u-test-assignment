@@ -28,37 +28,37 @@ Framework - Lumen (https://lumen.laravel.com/docs/6.2)
 4) Execute "php artisan migrate:fresh" in terminal to setup tables (Reach to you poject folder for executing this cmd)
 5) Execute "php artisan db:seed" in terminal to populate dependant data (like offers, recipients)
 6) Created console app with below list of commands to perform given tasks:
--- php artisan <method_type>:<action_to_be_performed>
--- php artisan get:clients
--- php artisan get:client_by_id
--- php artisan get:get_client_address_by_client_id
--- php artisan add:client_address
--- php artisan update:client_address
--- php artisan update:set_default_client_address
--- php artisan delete:client_address
+- php artisan <method_type>:<action_to_be_performed>
+- php artisan get:clients
+- php artisan get:client_by_id
+- php artisan get:get_client_address_by_client_id
+- php artisan add:client_address
+- php artisan update:client_address
+- php artisan update:set_default_client_address
+- php artisan delete:client_address
 
-Appendix:
+- Appendix:
 
-get
-  get:clients                          Get all clients
-  get:client_by_id                     Get client by id
-  get:get_client_address_by_client_id  Get client address by client id
+- get
+  - get:clients                          Get all clients
+  - get:client_by_id                     Get client by id
+  - get:get_client_address_by_client_id  Get client address by client id
 
-add
-  add:client_address                   Add client address
+- add
+  - add:client_address                   Add client address
 
-update
-  update:client_address                Update client address
-  update:set_default_client_address    Set default client address
+- update
+  - update:client_address                Update client address
+  - update:set_default_client_address    Set default client address
 
-delete
-  delete:client_address                Delete client address
+- delete
+  - delete:client_address                Delete client address
 
 7) Created few test cases to be verified against created web end points. You can execute them .vendor/bin/phpunit cmd.
 8) Technical implementation details:
--- Created Domains consists of
---- Models
---- Interfaces
---- Repositories
--- Created Controllers (Injected Repositories for communication with DB - Decoupled database layer from Controller)
--- Created Console Commands for preparing console applications
+- Created Domains consists of
+  - Models
+  - Interfaces
+  - Repositories
+- Created Controllers (Injected Repositories for communication with DB - Decoupled database layer from Controller)
+- Created Console Commands for preparing console applications
