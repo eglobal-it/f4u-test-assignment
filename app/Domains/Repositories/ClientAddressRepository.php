@@ -23,8 +23,8 @@ class ClientAddressRepository implements ClientAddressInterface {
         $client_address['zipcode'] = $request['zipcode'];
         $client_address['city'] = $request['city'];
         $client_address['country'] = $request['country'];
-        $client_address_detail = ClientAddress::where(['client_id' => $request['client_id'], 'is_default' => 1])->get();
-        if($client_address_detail){
+        $client_address_detail = ClientAddress::where(['client_id' => $request['client_id'], 'is_default' => 1])->get()->toArray();
+        if(count($client_address_detail) > 0 ){
             $client_address['is_default'] = 0;
         } else {
             $client_address['is_default'] = 1;
